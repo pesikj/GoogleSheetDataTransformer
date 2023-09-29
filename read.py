@@ -29,5 +29,5 @@ for i, data_row in enumerate(data_list):
     user = email.split("@")[0]
     if user in email_output_list:
         index_destination = email_output_list.index(user)
-        sh_output.update_cell(index_destination, int(lesson) + 1, str(points))
+        sh_output.update_cell(index_destination + 1, int(lesson) + 1, float(points))
 
