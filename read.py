@@ -19,6 +19,7 @@ email_list = sh_input.col_values(2)
 points_list = sh_input.col_values(int(column_points))
 data_list = zip(email_list, points_list)
 email_output_list = sh_output.col_values(1)
+added_emails = 0
 
 for i, data_row in enumerate(data_list):
     email, points = data_row
@@ -30,4 +31,9 @@ for i, data_row in enumerate(data_list):
     if user in email_output_list:
         index_destination = email_output_list.index(user)
         sh_output.update_cell(index_destination + 1, int(lesson) + 1, float(points))
+    else:
+        index_destination = len([x for x in email_output_list if x]) + added_emails
+        sh_output.update_cell(index_destination + 1, 1, user)
+        sh_output.update_cell(index_destination + 1, int(lesson) + 1, float(points))
+        added_emails += 1
 
